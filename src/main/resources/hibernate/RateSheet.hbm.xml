@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 4, 2017 12:48:05 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.RateSheet" table="rate_sheet" catalog="citypak">
+        <id name="idrateSheet" type="java.lang.Integer">
+            <column name="idrate_sheet" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="weightType" class="hibernate.WeightType" fetch="select">
+            <column name="weight_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="packageType" class="hibernate.PackageType" fetch="select">
+            <column name="parcel_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="distance" class="hibernate.Distance" fetch="select">
+            <column name="distance" not-null="true" />
+        </many-to-one>
+        <property name="amount" type="double">
+            <column name="amount" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="userHasRateSheets" table="user_has_rate_sheet" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_rate_sheet" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.UserHasRateSheet" />
+        </set>
+    </class>
+</hibernate-mapping>

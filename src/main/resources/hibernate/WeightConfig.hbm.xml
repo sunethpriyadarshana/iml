@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 4, 2017 12:48:05 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.WeightConfig" table="weight_config" catalog="citypak">
+        <id name="idweightConfig" type="java.lang.Integer">
+            <column name="idweight_config" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="weightType" class="hibernate.WeightType" fetch="select">
+            <column name="id_weight_type" not-null="true" />
+        </many-to-one>
+        <property name="value" type="int">
+            <column name="value" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

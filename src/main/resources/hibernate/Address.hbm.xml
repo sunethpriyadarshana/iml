@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 4, 2017 12:48:05 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.Address" table="address" catalog="citypak">
+        <id name="idaddress" type="java.lang.Integer">
+            <column name="idaddress" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="town" class="hibernate.Town" fetch="select">
+            <column name="id_town" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" not-null="true" />
+        </property>
+        <property name="latitude" type="string">
+            <column name="latitude" length="16777215" />
+        </property>
+        <property name="longitude" type="string">
+            <column name="longitude" length="16777215" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="contactNumber" type="string">
+            <column name="contact_number" length="45" not-null="true" />
+        </property>
+        <set name="deliveriesForToAddress" table="delivery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="to_address" />
+            </key>
+            <one-to-many class="hibernate.Delivery" />
+        </set>
+        <set name="parcelsForTo" table="parcel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="to" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Parcel" />
+        </set>
+        <set name="deliveriesForFromAddress" table="delivery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="from_address" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Delivery" />
+        </set>
+        <set name="parcelsForFrom" table="parcel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="from" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Parcel" />
+        </set>
+        <set name="userHasAddresses" table="user_has_address" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="address_idaddress" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.UserHasAddress" />
+        </set>
+    </class>
+</hibernate-mapping>

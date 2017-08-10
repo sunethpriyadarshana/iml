@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="citypak"/>
+  <table-filter match-name="vehicle_type"/>
+  <table-filter match-name="weight_type"/>
+  <table-filter match-name="delivery_status"/>
+  <table-filter match-name="user_role_has_action"/>
+  <table-filter match-name="delivery"/>
+  <table-filter match-name="zone"/>
+  <table-filter match-name="package_type"/>
+  <table-filter match-name="account"/>
+  <table-filter match-name="user_has_address"/>
+  <table-filter match-name="town"/>
+  <table-filter match-name="weight_config"/>
+  <table-filter match-name="user_has_device"/>
+  <table-filter match-name="user_has_rate_sheet"/>
+  <table-filter match-name="rate_sheet"/>
+  <table-filter match-name="user_has_vehicle"/>
+  <table-filter match-name="user"/>
+  <table-filter match-name="user_role"/>
+  <table-filter match-name="user_status"/>
+  <table-filter match-name="device"/>
+  <table-filter match-name="transaction"/>
+  <table-filter match-name="action"/>
+  <table-filter match-name="vehicle"/>
+  <table-filter match-name="transaction_type"/>
+  <table-filter match-name="branch"/>
+  <table-filter match-name="distance"/>
+  <table-filter match-name="parcel"/>
+  <table-filter match-name="address"/>
+</hibernate-reverse-engineering>

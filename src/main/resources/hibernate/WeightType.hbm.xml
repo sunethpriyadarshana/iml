@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 4, 2017 12:48:05 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.WeightType" table="weight_type" catalog="citypak">
+        <id name="idweightType" type="java.lang.Integer">
+            <column name="idweight_type" />
+            <generator class="identity" />
+        </id>
+        <property name="weightType" type="string">
+            <column name="weight_type" length="45" not-null="true" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+        <set name="rateSheets" table="rate_sheet" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="weight_type" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.RateSheet" />
+        </set>
+        <set name="weightConfigs" table="weight_config" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_weight_type" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.WeightConfig" />
+        </set>
+    </class>
+</hibernate-mapping>

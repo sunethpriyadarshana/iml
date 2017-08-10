@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 4, 2017 12:48:05 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.Parcel" table="parcel" catalog="citypak">
+        <id name="idparcel" type="java.lang.Integer">
+            <column name="idparcel" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="deliveryStatus" class="hibernate.DeliveryStatus" fetch="select">
+            <column name="delivery_status" not-null="true" />
+        </many-to-one>
+        <many-to-one name="packageType" class="hibernate.PackageType" fetch="select">
+            <column name="package_type" not-null="true" />
+        </many-to-one>
+        <many-to-one name="addressByTo" class="hibernate.Address" fetch="select">
+            <column name="to" not-null="true" />
+        </many-to-one>
+        <many-to-one name="addressByFrom" class="hibernate.Address" fetch="select">
+            <column name="from" not-null="true" />
+        </many-to-one>
+        <property name="weight" type="float">
+            <column name="weight" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="height" type="float">
+            <column name="height" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="length" type="float">
+            <column name="length" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="width" type="float">
+            <column name="width" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" length="19" not-null="true" />
+        </property>
+        <property name="refNumber" type="string">
+            <column name="ref_number" length="45" />
+        </property>
+        <property name="curruntLocationLongitude" type="string">
+            <column name="currunt_location_longitude" length="16777215" not-null="true" />
+        </property>
+        <property name="curruntLocationLatitude" type="string">
+            <column name="currunt_location_latitude" length="16777215" not-null="true" />
+        </property>
+        <set name="deliveries" table="delivery" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_package" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Delivery" />
+        </set>
+        <set name="transactions" table="transaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_package" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Transaction" />
+        </set>
+    </class>
+</hibernate-mapping>

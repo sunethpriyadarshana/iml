@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 4, 2017 12:48:05 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.User" table="user" catalog="citypak">
+        <id name="iduser" type="java.lang.Integer">
+            <column name="iduser" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userRole" class="hibernate.UserRole" fetch="select">
+            <column name="id_user_role" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userStatus" class="hibernate.UserStatus" fetch="select">
+            <column name="status" not-null="true" />
+        </many-to-one>
+        <property name="nic" type="string">
+            <column name="nic" length="45" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" not-null="true" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="apiKey" type="string">
+            <column name="api_key" length="45" unique="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
+        <property name="resetToken" type="string">
+            <column name="reset_token" length="45" unique="true" />
+        </property>
+        <set name="userHasDevices" table="user_has_device" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.UserHasDevice" />
+        </set>
+        <set name="userHasVehicles" table="user_has_vehicle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.UserHasVehicle" />
+        </set>
+        <set name="userHasAddresses" table="user_has_address" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_iduser" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.UserHasAddress" />
+        </set>
+        <set name="userHasRateSheets" table="user_has_rate_sheet" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_user" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.UserHasRateSheet" />
+        </set>
+        <set name="accounts" table="account" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_user" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Account" />
+        </set>
+    </class>
+</hibernate-mapping>

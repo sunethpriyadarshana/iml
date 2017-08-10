@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Mirrored from colorlib.com/polygon/gentelella/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 25 Jun 2017 01:22:59 GMT -->
+    <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Gentelella Alela! | </title>
+
+        <!-- Bootstrap -->
+        <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- Animate.css -->
+        <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+
+        <!-- Custom Theme Style -->
+        <link href="../build/css/custom.min.css" rel="stylesheet">
+    </head>
+
+    <body class="login row">
+
+        <div class="col-lg-4">
+            <img src="../img/shutterstock_20150512082851523.jpg" style=" opacity: 0.5;
+                 filter: alpha(opacity=50); " width="1400px" alt=""/>
+        </div>
+        <div class="col-lg-4">
+            <a class="hiddenanchor" id="signup"></a>
+            <a class="hiddenanchor" id="signin"></a>
+
+            <div class="login_wrapper " style="margin-right: 80px">
+                <div class="animate form login_form" style="border: 1px solid;border-color:#cc0000; border-radius: 10px">
+
+                    <section class="login_content" style="margin: 5px">
+                        <form>
+                            <div>
+                                <h1> <img src="../img/uuu.png" width="100px" style="margin-top: -15px" alt=""/></h1>
+                            </div>
+                            <h1>Login Form</h1>
+                            <div>
+                                <input type="text" class="form-control" id="uname" placeholder="Username" required="" />
+                            </div>
+                            <div>
+                                <input type="password" class="form-control" id="upass" placeholder="Password" required="" />
+                            </div>
+                            <div>
+                                <h3 id="err_msg"></h3>    
+                            </div>
+                            <div>
+                                <a class="btn "style="background-color:  #ff0000 !important ;color: #ffffff; text-decoration: none; :hover{background-color: #cc0000 !important;}" onclick="login();" href="#">Log in</a>
+                                <a class="reset_pass" style="color:#008" href="#">Lost your password?</a>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <div class="separator" style="border-color: #060">
+                                <p style="color: #000" class="change_link">New to site?
+                                    <a href="#signup" style="color: #cc0000" class="to_register"> Create Account </a>
+                                </p>
+
+                                <div class="clearfix"></div>
+                                <br />
+
+
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <div id="register" class="animate form registration_form" style="border: 1px solid;border-color:#cc0000; border-radius: 10px">
+                    <section class="login_content" style="margin: 5px;">
+                        <form>
+                            <div>
+                                <h1> <img src="../img/uuu.png" width="100px" style="margin-top: -15px"alt=""/></h1>
+
+                            </div>
+                            <h1>Create Account</h1>
+                            <div>
+                                <input id="reg_username" type="text" class="form-control" placeholder="Username" required="" />
+                            </div>
+                            <div>
+                                <input id="reg_email" type="email" class="form-control" placeholder="Email" required="" />
+                            </div>
+                            <div>
+                                <input id="reg_password" type="password" class="form-control" placeholder="Password" required="" />
+                            </div>
+                            <div>
+                                <a class="btn  submit" style="background-color:  #ff0000 !important ;color: #ffffff; text-decoration: none; :hover{background-color: #cc0000 !important;}" href="#signup" onclick="registerUser();">Submit</a>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <div class="separator" style="border-color: #060">
+                                <p style="color: #000" class="change_link">Already a member ?
+                                    <a href="#signin" style="color: #cc0000" class="to_register" > Log in </a>
+                                </p>
+
+                                <div class="clearfix"></div>
+                                <br />
+
+
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </body>
+    <script type="text/javascript">
+                                    function login() {
+                                        $.ajax({
+                                            url: '../api/login',
+                                            data: {
+                                                username: $('#uname').val(),
+                                                password: $('#upass').val()
+                                            },
+                                            error: function(xhr) {
+                                                $('#err_msg').text($.parseJSON(xhr.responseText).err_body);
+                                            },
+                                            dataType: 'json',
+                                            success: function(data) {
+                                                if (data.status === 'success') {
+                                                    localStorage.setItem('user', data.msg_body);
+                                                    window.location.href = "plain_page.html";
+                                                }
+                                            },
+                                            type: 'POST'
+                                        });
+                                    }
+
+                                    function registerUser() {
+                                        $.ajax({
+                                            url: '../api/user',
+                                            data: {
+                                                name: $('#reg_username').val(),
+                                                email: $('#reg_email').val(),
+                                                password: $('#reg_password').val()
+                                            },
+                                            error: function(xhr) {
+                                                alert($.parseJSON(xhr.responseText).err_body);
+                                            },
+                                            dataType: 'json',
+                                            success: function(data) {
+                                                if (data.status === 'success') {
+                                                    alert(data.msg_body);
+                                                }
+                                            },
+                                            type: 'POST'
+                                        });
+                                    }
+
+
+    </script>
+    <!-- Mirrored from colorlib.com/polygon/gentelella/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 25 Jun 2017 01:23:01 GMT -->
+</html>

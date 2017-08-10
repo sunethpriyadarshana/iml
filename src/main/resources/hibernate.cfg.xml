@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/citypak</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"></property>
+    <mapping resource="hibernate/Town.hbm.xml"/>
+    <mapping resource="hibernate/Transaction.hbm.xml"/>
+    <mapping resource="hibernate/UserHasRateSheet.hbm.xml"/>
+    <mapping resource="hibernate/Address.hbm.xml"/>
+    <mapping resource="hibernate/Distance.hbm.xml"/>
+    <mapping resource="hibernate/UserHasDevice.hbm.xml"/>
+    <mapping resource="hibernate/WeightConfig.hbm.xml"/>
+    <mapping resource="hibernate/Account.hbm.xml"/>
+    <mapping resource="hibernate/User.hbm.xml"/>
+    <mapping resource="hibernate/UserHasAddress.hbm.xml"/>
+    <mapping resource="hibernate/Delivery.hbm.xml"/>
+    <mapping resource="hibernate/Vehicle.hbm.xml"/>
+    <mapping resource="hibernate/VehicleType.hbm.xml"/>
+    <mapping resource="hibernate/Branch.hbm.xml"/>
+    <mapping resource="hibernate/DeliveryStatus.hbm.xml"/>
+    <mapping resource="hibernate/WeightType.hbm.xml"/>
+    <mapping resource="hibernate/TransactionType.hbm.xml"/>
+    <mapping resource="hibernate/PackageType.hbm.xml"/>
+    <mapping resource="hibernate/Parcel.hbm.xml"/>
+    <mapping resource="hibernate/UserHasVehicle.hbm.xml"/>
+    <mapping resource="hibernate/Action.hbm.xml"/>
+    <mapping resource="hibernate/UserRoleHasAction.hbm.xml"/>
+    <mapping resource="hibernate/RateSheet.hbm.xml"/>
+    <mapping resource="hibernate/UserStatus.hbm.xml"/>
+    <mapping resource="hibernate/Zone.hbm.xml"/>
+    <mapping resource="hibernate/Device.hbm.xml"/>
+    <mapping resource="hibernate/UserRole.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
